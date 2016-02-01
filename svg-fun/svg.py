@@ -4,18 +4,24 @@ import sys
 import math
 import argparse
 
+# maybe change this to use actual ratios
+
+phi = (1 + 5 ** 0.5) / 2
+angle = 360 - 360/phi
+
 
 def argparser():
     argparser = argparse.ArgumentParser()
     argparser.add_argument("--width", type=int, default=1100)
-    argparser.add_argument("--height", type=int, default=1100)
+    argparser.add_argument("--height", type=int, default=950)
     argparser.add_argument("--iterations", type=int, default=1000)
-    argparser.add_argument("--angle", type=float, default=137.5)
+    argparser.add_argument("--angle", type=float, default=angle)
     argparser.add_argument("--distance", type=float, default=8.0)
     argparser.add_argument("--size", type=float, default=5.0)
     argparser.add_argument("--debug", action='store_true')
     argparser.add_argument("--func", default="default")
     argparser.add_argument("--title", default="ResBaz D3 SVG Challenge")
+    argparser.add_argument("--justsvg", action="store_true")
     return argparser
 
          
@@ -246,8 +252,11 @@ def main(argv=None):
     
     svg_body = fibonacci()
     svg = do_svg(svg_body, arg.width, arg.height)
-    html = do_html(arg.title, svg)
-    print(html)
+    if arg.justsvg:
+        print(svg)
+    else:
+        html = do_html(arg.title, svg)
+        print(html)
 
     
 if __name__ == "__main__":
