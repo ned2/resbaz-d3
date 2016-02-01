@@ -1,0 +1,11 @@
+.description{
+    display: inline-block;
+    margin: 1em;
+    max-width: 400px;
+    vertical-align: middle;
+}
+
+.svg {
+    display: inline-block;
+    vertical-align: middle;
+}
